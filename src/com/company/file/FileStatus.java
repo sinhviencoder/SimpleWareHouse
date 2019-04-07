@@ -1,0 +1,5 @@
+package com.company.file;
+
+public enum FileStatus {
+    PRESENT, DOWNLOADING, DOWNLOADED, DOWNLOADED_FAIL, EXTRACTING, EXTRACTING_SUC, EXTRACTING_FAIL;
+}
