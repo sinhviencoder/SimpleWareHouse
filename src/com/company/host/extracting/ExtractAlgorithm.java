@@ -5,5 +5,5 @@ import com.company.host.HostConfiguration;
 import java.sql.SQLException;
 
 public interface ExtractAlgorithm {
-    int extract(HostConfiguration host, String fileName) throws SQLException;
+    int extract(HostConfiguration host, String fileName , int logId) throws SQLException;
 }

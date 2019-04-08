@@ -32,7 +32,9 @@ public class DynamicColumnsExtractingAlgorithm implements ExtractAlgorithm {
     }
 
     @Override
-    public int extract(HostConfiguration host, String fileName) throws SQLException {
+    @Deprecated
+    public int extract(HostConfiguration host, String fileName , int logId) throws SQLException {
+    	// ON ERROR NOT TO USE THIS FUCKING METHOD
         DBConnectionUtil cnUtil = new MySqlDBConnection(MySqlDBConnection.STAGING_URL, MySqlDBConnection.USER_NAME, MySqlDBConnection.PASSWORD);
         int insertedRecords = -1;
         String[] hostColumns = host.getHostListColumns().split(",");

@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.file.Log;
 import com.company.file.LoggingFileStatus;
 import com.company.file.MysqlLoggingFileStatus;
 import com.company.host.HostConfiguration;
@@ -98,16 +99,17 @@ public class PullingMutipleFtpSourceClient {
 		ExtractAlgorithm extractScript = new OneTableForOneSourceExtractingAlgorithm();
 		// loading file from local to staging area
 		for (HostConfiguration host : ftpHosts) {
-			host.setOwnerFileNames(log.getDowloadedFiles(host));
+			host.setOwnerLogs(log.getLogs(host));
 			// starting extracting
-			for (String fileName : host.getOwnerFileNames()) {
+			for (Log hostLog : host.getOwnerLogs()) {
+				String fileName = hostLog.getFileName();
 				if (extractScript == null)
 					continue;
 				log.beforeExtractingProcess(host, fileName);
 				try {
 					System.out.println();
 					System.out.println(host.getHostName() + "  " + host.getUser() + ", start extracting: " + fileName);
-					int stagingRecords = extractScript.extract(host, fileName);
+					int stagingRecords = extractScript.extract(host, fileName , hostLog.getHostId());
 					log.afterExtractingProcess(host, fileName, stagingRecords);
 					System.out.println(
 							host.getHostName() + "  " + host.getUser() + ", extracting successfully: " + fileName);

@@ -2,11 +2,13 @@ package com.company.host;
 
 import java.util.List;
 
+import com.company.file.Log;
+
 public class HostConfiguration {
     private String hostName, user, password, remoteDir, localDir, formatFile, extractScriptName, transformScriptName;
     private int port, hostId;
     private String hostListColumns, warehouseRequiredColumns, delim, stagingTable;
-    private List<String> fileNames;
+    private List<Log> logs;
 
     public HostConfiguration() {
     }
@@ -59,12 +61,12 @@ public class HostConfiguration {
         this.extractScriptName = extractScriptName;
     }
 
-    public List<String> getOwnerFileNames() {
-        return fileNames;
+    public List<Log> getOwnerLogs() {
+        return this.logs;
     }
 
-    public void setOwnerFileNames(List<String> fileNames) {
-        this.fileNames = fileNames;
+    public void setOwnerLogs(List<Log> logs) {
+        this.logs = logs;
     }
 
     public int getHostId() {

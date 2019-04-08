@@ -20,7 +20,7 @@ public interface LoggingFileStatus {
 
     void onPollingFileError(HostConfiguration config, String FileName);
 
-    List<String> getDowloadedFiles(HostConfiguration config);
+    List<Log> getLogs(HostConfiguration config);
 
     void close();
 }
