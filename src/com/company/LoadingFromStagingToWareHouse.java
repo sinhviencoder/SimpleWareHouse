@@ -3,11 +3,15 @@ package com.company;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 import com.company.db.DBConnectionUtil;
 import com.company.db.MySqlDBConnection;
 
 public class LoadingFromStagingToWareHouse {
+	static Calendar vn = Calendar.getInstance(TimeZone.getTimeZone("Asia/Bangkok"));
 	public static void main(String[] args) throws SQLException {
 		DBConnectionUtil cnUtil = new MySqlDBConnection(MySqlDBConnection.STAGING_URL, MySqlDBConnection.USER_NAME,
 				MySqlDBConnection.PASSWORD);
@@ -35,7 +39,8 @@ public class LoadingFromStagingToWareHouse {
 				if (rsOfIfExist.next()) {
 					// update existed record to inactive
 					String queryUpdateOldRecordToInActive = "UPDATE WAREHOUSE." + to_warehouse_table
-							+ " SET is_active=0" + " WHERE natural_key=" + natural_key;
+							+ " SET is_active=0,changed_time='" +(new Timestamp(System.currentTimeMillis()).toString()).substring(0,19)+"'" 
+							+ " WHERE natural_key=" + natural_key;
 					cnn.createStatement().executeUpdate(queryUpdateOldRecordToInActive);
 				}
 				// insert new record
