@@ -41,11 +41,11 @@ public class OneTableForOneSourceExtractingAlgorithm implements ExtractAlgorithm
 		bd.append("CREATE TABLE IF NOT EXISTS ");
 		bd.append(host.getStagingTable());
 		bd.append("(");
-		bd.append("log_id int,");
+		
 		for (int i = 0; i < listColumns.length; i++) {
 			bd.append(listColumns[i] + " text,");
 		}
-		bd.deleteCharAt(bd.length() - 1);
+		bd.append("log_id int");
 		bd.append(")");
 		bd.append(" CHARACTER SET utf8mb4");
 		System.out.println(bd.toString());

@@ -95,7 +95,6 @@ public class PullingMutipleFtpSourceClient {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
-
 		ExtractAlgorithm extractScript = new OneTableForOneSourceExtractingAlgorithm();
 		// loading file from local to staging area
 		for (HostConfiguration host : ftpHosts) {
